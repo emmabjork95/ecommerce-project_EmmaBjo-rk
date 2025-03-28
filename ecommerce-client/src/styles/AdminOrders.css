@@ -1,0 +1,45 @@
+.admin-orders {
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    width: 100%; 
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 40px; 
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.admin-orders-header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.admin-orders-table td {
+    padding: 15px; 
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    white-space: nowrap;
+}
+
+.admin-orders-table th {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.order-status-select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.admin-orders-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+

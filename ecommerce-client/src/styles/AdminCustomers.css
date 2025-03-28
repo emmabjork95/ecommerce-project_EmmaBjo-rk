@@ -1,0 +1,38 @@
+.admin-customers {
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 40px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.admin-customers-header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.admin-customers-table th,
+.admin-customers-table td {
+    padding: 15px; 
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    white-space: nowrap;
+}
+
+.admin-customers-table th {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.admin-customers-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+
