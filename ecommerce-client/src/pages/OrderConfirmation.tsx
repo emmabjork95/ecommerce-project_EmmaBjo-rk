@@ -1,32 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getPaymentById, updateOrderStatus } from "../services/apiOrders";
 import { IOrder } from "../types/IOrder";
 import { useSearchParams } from "react-router";
+import CartContext from "../contexts/CartContext";
+import { CartActionType } from "../reducers/CartReducer";
 
 
 export const OrderConfirmation = () => {
   const [searchParams] = useSearchParams();
   const [order, setOrder] = useState<IOrder | null>(null);
+  const {dispatch} = useContext(CartContext);
 
   useEffect(() => {
-    //Snappa upp Querystring parametern session_id,
-    //-> order-confirmation?session_id=cs_test....
-    // från URL:en, med hjälp av useSearchParams()
-
-
-    //Använd session_id värdet från URL:en för att hämta specifik order
-    // med följande anrop: GET/orders/payment/:id
-    // där :id är session_id
-
-
-
-    // Se till att uppdatera ordern med följande
-      // payment_status = "Paid",
-      // payment_id = session_id
-      // order_status= "Received"
-
-
-   // Använd order för att visa orderinfo på denna sida
+ 
     const sessionId = searchParams.get("session_id");
     console.log("Session Id från URL:", sessionId);
 
@@ -45,6 +31,11 @@ export const OrderConfirmation = () => {
             });
             console.log("Ordern har uppdaterats.");
 
+            dispatch({ type: CartActionType.RESET_CART, payload: null });
+            localStorage.removeItem("cart");
+            localStorage.removeItem("checkoutCustomer");
+            console.log("Varukorgen och kunddata har rensats.");
+
           } else {
             console.error("Ordern kunde inte hittas.");
             setOrder(null);
@@ -55,16 +46,11 @@ export const OrderConfirmation = () => {
       };
       fetchOrder();
     }
-
-    localStorage.removeItem('cart');
-    localStorage.removeItem("checkoutCustomer");
-    console.log("LocalStorage för cart och customer är nu tömt.");
-  }, [searchParams]);
+  }, [searchParams, dispatch]);
 
   if (!order) {
     return <p>Kunde inte visa order</p>
   }
-
 
   return (
     <div>
