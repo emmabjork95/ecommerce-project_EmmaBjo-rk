@@ -46,7 +46,7 @@ export const updateOrder = async (id: number, payload: Partial<IOrder>): Promise
   }
 };
 
-export const updateOrderStatus = async (id: number, payload: {order_status: string; payment_status: string}): Promise<IOrder> => {
+export const updateOrderStatus = async (id: number, payload: {order_status: string; payment_status: string; payment_id: string;}): Promise<IOrder> => {
   try {
     const response = await axios.patch(`${API_URL}/${id}`, payload);
     return response.data;

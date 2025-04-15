@@ -1,61 +1,87 @@
 import { useEffect, useState } from "react";
-import { getPaymentById } from "../services/apiOrders";
+import { getPaymentById, updateOrderStatus } from "../services/apiOrders";
 import { IOrder } from "../types/IOrder";
-import { useLocation } from "react-router";
+import { useSearchParams } from "react-router";
 
 
 export const OrderConfirmation = () => {
-  const useQuery = () => new URLSearchParams(useLocation().search);
-  const query = useQuery();
-  const sessionId = query.get('session_id');
-
-  console.log("Session ID:", sessionId); 
-
+  const [searchParams] = useSearchParams();
   const [order, setOrder] = useState<IOrder | null>(null);
 
   useEffect(() => {
+    //Snappa upp Querystring parametern session_id,
+    //-> order-confirmation?session_id=cs_test....
+    // från URL:en, med hjälp av useSearchParams()
+
+
+    //Använd session_id värdet från URL:en för att hämta specifik order
+    // med följande anrop: GET/orders/payment/:id
+    // där :id är session_id
+
+
+
+    // Se till att uppdatera ordern med följande
+      // payment_status = "Paid",
+      // payment_id = session_id
+      // order_status= "Received"
+
+
+   // Använd order för att visa orderinfo på denna sida
+    const sessionId = searchParams.get("session_id");
+    console.log("Session Id från URL:", sessionId);
+
     if (sessionId) {
       const fetchOrder = async () => {
         try {
-          const paymentData = await getPaymentById(sessionId);
-          setOrder(paymentData[0]); 
-        } catch (err) {
-          console.error("Fel vid hämtning av order:", err);
+          const response = await getPaymentById(sessionId);
+          console.log("Hämtad order:", response);
+
+          if(response) {
+            setOrder(response);
+            await updateOrderStatus(response.id, {
+              order_status: "Received", 
+              payment_status: "Paid", 
+              payment_id: sessionId
+            });
+            console.log("Ordern har uppdaterats.");
+
+          } else {
+            console.error("Ordern kunde inte hittas.");
+            setOrder(null);
+          }
+        } catch (error) {
+          console.error("Kunde inte hämta order:", error)
         }
       };
-
       fetchOrder();
     }
-  }, [sessionId]);
+
+    localStorage.removeItem('cart');
+    localStorage.removeItem("checkoutCustomer");
+    console.log("LocalStorage för cart och customer är nu tömt.");
+  }, [searchParams]);
+
+  if (!order) {
+    return <p>Kunde inte visa order</p>
+  }
 
 
   return (
     <div>
-      <h2>Orderbekräftelse</h2>
-      {order ? (
-        <div>
-          <h3>Kundinformation</h3>
-          <p>{order.customer_firstname} {order.customer_lastname}</p>
-          <p>{order.customer_email}</p>
-          <p>{order.customer_phone}</p>
+      <h1>Tack för din beställning!</h1>
+      <p>Ordernummer: {order.id}</p>
 
-          <h3>Orderdetaljer</h3>
-          <ul>
-            {order.order_items.map((item) => (
-              <li key={item.product_id}>
-                <img src={item.image} alt={item.product_name} style={{ width: "50px" }} />
-                <p>{item.product_name} - {item.quantity} st</p>
-                <p>Pris: {item.unit_price} kr</p>
-              </li>
-            ))}
-          </ul>
+      <h3>Produkter:</h3>
+      <ul>
+        {order.order_items.map((item: any) => (
+          <li key={item.id}>
+            {item.product_name} - {item.quantity} st - {item.unit_price} kr
+          </li>
+        ))}
+      </ul>
 
-          <h3>Totalt pris</h3>
-          <p>{order.total_price} kr</p>
-        </div>
-      ) : (
-        <p>Ingen orderinformation tillgänglig.</p>
-      )}
+      <p>Totalbelopp: {order.total_price} kr</p>
     </div>
   );
 };
+
