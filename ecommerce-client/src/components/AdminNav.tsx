@@ -1,19 +1,23 @@
 import { Link } from "react-router";
+import '../styles/base.css'
 
 const AdminNav = () => {
   return (
-    <nav style={{ marginBottom: "20px" }}>
+    <nav className="admin-nav-style">
       <Link to="/admin/products">
-        <button style={{ marginRight: "10px" }}>Produkter</button>
+        <button className="admin-nav-btn">Produkter</button>
       </Link>
+
       <Link to="/admin/customers">
-        <button style={{ marginRight: "10px" }}>Kunder</button>
+        <button className="admin-nav-btn">Kunder</button>
       </Link>
+
       <Link to="/admin/orders">
-        <button style={{ marginRight: "10px" }}>Ordrar</button>
+        <button className="admin-nav-btn">Ordrar</button>
       </Link>
+
       <Link to="/">
-        <button style={{ marginRight: "10px" }}>E-shop</button>
+        <button className="admin-nav-btn">E-shop</button>
       </Link>
     </nav>
   )

@@ -1,7 +1,7 @@
 import { IOrderItem } from "./IOrderItem"
 
 export interface IOrder {
-  id: number | string
+  id: number 
   customer_id: number
   total_price: number
   payment_status: string

@@ -49,8 +49,8 @@ const ProductDetails = () => {
   return (
     <div className="wrapper">
       <div className="btn-details">
-        <button onClick={goBackHome} className="back-button" style={{ marginTop: "20px" }}>Tillbaka</button>
-        <div className="cart-button_Details" onClick={() => navigate("/cart")}>
+        <button onClick={goBackHome} className="pink-btn">Tillbaka</button>
+        <div className="cart-btn-details" onClick={() => navigate("/cart")}>
           <FaShoppingCart size={30} />
           {totalCartItems > 0 && <span className="cart-count_Details">{totalCartItems}</span>}
         </div>
@@ -66,7 +66,7 @@ const ProductDetails = () => {
       <p><strong>Beskrivning:</strong> {product.description}</p>
       <p><strong>Stock:</strong> {product.stock}</p>
       <p><strong>Kategori:</strong> {product.category}</p>
-      <button onClick={addToCart} className="add-btn-details">Lägg i varukorgen</button>
+      <button onClick={addToCart} className="add-to-cart-btn">Lägg i varukorgen</button>
     </div>
   );
 };

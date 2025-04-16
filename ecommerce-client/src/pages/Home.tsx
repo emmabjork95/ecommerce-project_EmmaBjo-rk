@@ -45,10 +45,10 @@ const Home = () => {
     <div className="home-container">
       
       <div className="header-container">
-        <button className="admin-button" onClick={() => navigate("/admin/products")}>
+        <button className="pink-btn" onClick={() => navigate("/admin/products")}>
           Admin
         </button>
-        <div className="cart-button" onClick={() => navigate("/cart")}>
+        <div className="cart-btn" onClick={() => navigate("/cart")}>
           <FaShoppingCart size={30} />
           {totalCartItems > 0 && <span className="cart-count">{totalCartItems}</span>}
         </div>
@@ -72,7 +72,7 @@ const Home = () => {
               <p>{product.price} kr</p>
               <div className="button-container">
                 <button 
-                  className="btn add-btn" 
+                  className="add-to-cart-btn" 
                   onClick={(e) => {
                     e.stopPropagation(); 
                     addToCart(product);

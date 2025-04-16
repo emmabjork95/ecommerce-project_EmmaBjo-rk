@@ -1,0 +1,88 @@
+.checkout-wrapper {
+    color: black;
+    background-color: white;
+    border-radius: 5%;
+    width: 80%;
+    margin: 20px auto;
+    padding: 30px 50px;
+    position: relative;
+    width: 40vw;
+}
+
+.checkout-header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.checkout-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    gap: 30px; /* mellan bild och info */
+}
+
+.checkout-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10%;
+    object-fit: cover;
+}
+
+.checkout-item p {
+    margin: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+
+}
+
+.buy-btn {
+    background-color: rgb(160, 200, 173);
+    margin-left: 20px;
+    color: white;
+    margin: 30px;
+}
+
+.buy-btn:hover {
+    transform: scale(1.05);
+    background-color: rgb(124, 187, 145);
+    border: none;
+}
+
+.checkout-form {
+    margin-top: 20px;
+}
+
+.checkout-form h3 {
+    font-size: 1.5rem;
+    margin-top: 70px;
+    margin-bottom: 10px;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.checkout-grid label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.checkout-grid input {
+    margin-top: 5px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

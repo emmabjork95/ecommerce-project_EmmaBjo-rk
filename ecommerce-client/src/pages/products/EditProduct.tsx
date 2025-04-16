@@ -93,7 +93,7 @@ const EditProduct = () => {
         </div>
 
         <div className="create-product-buttons">
-          <button type="submit" className="create-product-btn">Spara ändringar</button>
+          <button type="submit" className="pink-btn">Spara ändringar</button>
           <button type="button" onClick={() => navigate("/admin/products")} className="cancel-btn">Avbryt</button>
         </div>
       </form>

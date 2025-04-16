@@ -8,7 +8,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.create-customer-header {
+.create-customer-title {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
@@ -42,22 +42,6 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
-}
-
-.create-customer-btn {
-    background-color: #ff66b2;
-    color: white;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.create-customer-btn:hover {
-    transform: scale(1.05);
-    background-color: #e35b98;
 }
 
 .cancel-btn {

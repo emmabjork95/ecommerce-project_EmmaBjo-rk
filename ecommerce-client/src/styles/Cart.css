@@ -77,22 +77,6 @@
     gap: 30px;
 }
 
-.back-btn {
-    background-color: #ff66b2;
-    color: white;
-    padding: 12px 24px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.back-btn:hover {
-    transform: scale(1.05);
-    background-color: #e35b98;
-}
-
 .delete-button {
     padding: 10px;
     background-color: #e6949c;
@@ -126,71 +110,3 @@
     transform: scale(1.05);
     background-color: rgb(234, 136, 185);
 }
-
-.continue-btn {
-    background-color: #ff66b2;
-    color: white;
-    padding: 12px 24px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.continue-btn:hover {
-    transform: scale(1.05);
-    background-color: #e35b98;
-}
-
-
-/* CHECKOUT FORM */
-
-.checkout-form {
-  padding: 20px;
-  max-width: 500px;
-  margin: 20px auto;
-  text-align: center;
-}
-
-.checkout-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.checkout-form label {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  font-size: 14px;
-  font-weight: bold;
-  color: #444;
-}
-
-.checkout-form input,
-.checkout-form select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-}
-
-.submit-btn {
-    background-color: #ff66b2;
-    color: white;
-    padding: 12px 24px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.submit-btn:hover {
-    transform: scale(1.05);
-    background-color: #e35b98;
-}
-
-

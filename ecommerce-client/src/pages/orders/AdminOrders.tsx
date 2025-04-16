@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteOrder, getOrders, updateOrderStatus } from "../../services/apiOrders";
+import { deleteOrder, getOrders } from "../../services/apiOrders";
 import { IOrder } from "../../types/IOrder";
 import { Link } from "react-router";
 import '../../styles/AdminOrders.css'
@@ -21,7 +21,7 @@ const AdminOrders = () => {
     fetchOrders();
   }, []);
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number ) => {
     if (window.confirm("Är du säker på att du vill ta bort denna order?")) {
       try {
         await deleteOrder(id);
@@ -29,27 +29,6 @@ const AdminOrders = () => {
       } catch (error) {
         console.error("Fel vid borttagning av order:", error);
       }
-    }
-  };
-
-  const handleStatusChange = async (id: number, newStatus: string, currentPaymentStatus: string) => {
-    try {
-      console.log(`Ändrar order ${id} till status: ${newStatus}`);
-    
-      const payload = {
-        order_status: newStatus,
-        payment_status: currentPaymentStatus 
-      };
-    
-      await updateOrderStatus(id, payload);
-    
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === id ? { ...order, order_status: newStatus } : order
-        )
-      );
-    } catch (error) {
-      console.error("Fel vid uppdatering av orderstatus:", error);
     }
   };
   
@@ -66,7 +45,6 @@ const AdminOrders = () => {
       <th>Pris</th>
       <th>Betalningsstatus</th>
       <th>Datum</th>
-      <th>Orderstatus</th>
       <th>Åtgärder</th>
     </tr>
   </thead>
@@ -82,22 +60,10 @@ const AdminOrders = () => {
         <td>{order.total_price} kr</td>
         <td>{order.payment_status}</td>
         <td>{new Date(order.created_at).toLocaleDateString()}</td>
-        <td>
-          <select
-            className="order-status-select"
-            value={order.order_status}
-            onChange={(e) => handleStatusChange(order.id!, e.target.value, order.payment_status)}
-          >
-            <option value="Pending">Mottagen</option>
-            <option value="Shipped">Skickad</option>
-            <option value="Delivered">Levererad</option>
-            <option value="Cancelled">Avbruten</option>
-          </select>
-        </td>
         <td className="admin-orders-actions">
           <button className="delete-button-admin" onClick={() => handleDelete(order.id)}>Ta bort</button>
           <Link to={`/admin/orders/${order.id}`}>
-            <button className="edit-button-admin">Redigera</button>
+            <button className="edit-btn">Redigera</button>
           </Link>
         </td>
       </tr>

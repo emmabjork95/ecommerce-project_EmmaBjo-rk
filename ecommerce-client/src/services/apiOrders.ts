@@ -6,9 +6,9 @@ const API_URL = "http://localhost:3000/orders";
 const API_URL_Item = "http://localhost:3000/order-items";
 
 
-export const getPaymentById = async (id: string): Promise<IOrder[]>=> {
+export const getPaymentById = async (id: string): Promise<IOrder>=> {
   try {
-    const response = await axios.get<IOrder[]>(`${API_URL}/payment/${id}`);
+    const response = await axios.get<IOrder>(`${API_URL}/payment/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);

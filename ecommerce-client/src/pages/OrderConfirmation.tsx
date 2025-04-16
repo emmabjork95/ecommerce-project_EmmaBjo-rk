@@ -4,6 +4,7 @@ import { IOrder } from "../types/IOrder";
 import { useSearchParams } from "react-router";
 import CartContext from "../contexts/CartContext";
 import { CartActionType } from "../reducers/CartReducer";
+import "../styles/OrderConfirmation.css"
 
 
 export const OrderConfirmation = () => {
@@ -25,8 +26,8 @@ export const OrderConfirmation = () => {
           if(response) {
             setOrder(response);
             await updateOrderStatus(response.id, {
-              order_status: "Received", 
-              payment_status: "Paid", 
+              order_status: "Mottagen", 
+              payment_status: "Betald", 
               payment_id: sessionId
             });
             console.log("Ordern har uppdaterats.");
@@ -53,20 +54,29 @@ export const OrderConfirmation = () => {
   }
 
   return (
-    <div>
-      <h1>Tack för din beställning!</h1>
-      <p>Ordernummer: {order.id}</p>
+    <div className="order-confirmation-container">
+      <h1>Tack för din beställning, {order.customer_firstname}!</h1>
+      <ul className="customer-list">
+        <li><strong>Ordernummer:</strong> #{order.id}</li>
+        <li><strong>Namn:</strong> {order.customer_firstname} {order.customer_lastname}</li>
+        <li><strong>Email:</strong> {order.customer_email}</li>
+        <li><strong>Telefon:</strong> {order.customer_phone}</li>
+        <li><strong>Adress:</strong></li> 
+        <li className="adress-confirmation">{order.customer_street_address}, {order.customer_postal_code}</li>
+        <li className="adress-confirmation">{order.customer_city}, {order.customer_country}</li>
+        <li></li>
+      </ul>
 
-      <h3>Produkter:</h3>
-      <ul>
+      <h3>Produkter</h3>
+      <ul className="order-confirmation-list">
         {order.order_items.map((item: any) => (
           <li key={item.id}>
-            {item.product_name} - {item.quantity} st - {item.unit_price} kr
+           {item.quantity} x {item.product_name} — {item.unit_price} kr/st
           </li>
         ))}
       </ul>
 
-      <p>Totalbelopp: {order.total_price} kr</p>
+      <p className="order-confirmation-total">Totalbelopp: {order.total_price} kr</p>
     </div>
   );
 };

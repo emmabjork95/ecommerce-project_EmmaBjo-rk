@@ -36,7 +36,7 @@ const AdminProducts = () => {
   return (
     <div className="admin-products">
       <h1 className="admin-header">Produkthantering</h1>
-      <button onClick={() => navigate ("/admin/create")} className="create-product-btn" style={{marginBottom: "20px"}}> Skapa produkt</button>
+      <button onClick={() => navigate ("/admin/create")} className="pink-btn" style={{marginBottom: "20px"}}> Skapa produkt</button>
       <table className="product-table">
         <thead>
             <tr>
@@ -63,7 +63,7 @@ const AdminProducts = () => {
             <td>{product.stock}</td>
             <td>{product.category}</td>
             <td className="product-actions-admin">
-                <button className="edit-button-admin" onClick={() => navigate(`/admin/edit/${product.id}`)}>Redigera</button>
+                <button className="edit-btn" onClick={() => navigate(`/admin/edit/${product.id}`)}>Redigera</button>
                 <button className="delete-button-admin" onClick={() => handleDelete(product.id)} >
                     Radera
                 </button>

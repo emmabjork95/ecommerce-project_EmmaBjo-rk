@@ -1,0 +1,72 @@
+.order-confirmation-container {
+    background-color: white;
+    width: 80%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .order-confirmation-container h1 {
+    font-size: 3rem;
+    color: #8f3e81;
+    margin-bottom: 20px;
+  }
+  
+  .order-confirmation-container p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .order-confirmation-container h3 {
+    font-size: 1.5rem;
+    color: #917dbe;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .order-confirmation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 20px;
+    max-width: 500px;
+    text-align: left;
+  }
+  
+  .order-confirmation-list li {
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  
+  .order-confirmation-total {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+
+  .customer-list {
+    gap: 8px 20px; /* mellanrum mellan rader och kolumner */
+    list-style: none;
+    padding: 15px 20px;
+    margin: 10px auto 20px;
+    max-width: 480px;
+    text-align: left;
+    background-color: #fcf4ff;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(225, 195, 255, 0.2);
+    font-size: 0.95rem;
+    color: #5c3c4a;
+  }
+  
+  .customer-list li {
+    margin-bottom: 4px;
+  }
+
+  .adress-confirmation {
+    margin-left: 10px
+  }

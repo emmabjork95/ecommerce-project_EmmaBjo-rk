@@ -94,8 +94,8 @@ export const EditCustomer = () => {
           <input type="text" name="country" value={customer.country} onChange={handleChange} className="edit-customer-input" required />
         </div>
 
-      <div className="edit-customer-button">
-      <button type="submit" className="edit-customer-btn">Spara ändringar</button>
+      <div className="edit-customer-buttons">
+      <button type="submit" className="pink-btn">Spara ändringar</button>
       <button type="button" onClick={() => navigate("/admin/customers")} className="cancel-btn">Avbryt</button>
       </div>
     </form>

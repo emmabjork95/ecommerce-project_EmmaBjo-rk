@@ -27,41 +27,17 @@
     justify-content: space-around;
 }
 
-  .back-button {
-    position: absolute;
-    left: -350px;
-    background-color: #ff66b2;
-    color: white;
-    padding: 12px 24px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    z-index: 2;
-  }
-  
-  .back-button:hover {
-    transform: scale(1.05);
-    background-color: #e35b98;
-  }
-
   /* Kundvagn */
-.cart-button_Details {
+.cart-btn-details {
   position: absolute;
+  display: flex;
   top: 30px;
   right: 30px; 
   cursor: pointer;
-  display: flex;
   align-items: center;
-  color: #917dbe;
-  font-size: 1.5rem;
   padding: 10px;
-  }
-  
-  .cart-button_Details svg {
-    color: #ff66b2;
-    font-size: 2.2rem;
+  color: #ff66b2;
+  font-size: 2.2rem;
   }
 
   .cart-count_Details {

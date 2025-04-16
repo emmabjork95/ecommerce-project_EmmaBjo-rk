@@ -68,7 +68,7 @@ const CreateProduct = () => {
         </div>
 
         <div className="create-product-buttons">
-          <button type="submit" className="create-product-btn">Skapa produkt</button>
+          <button type="submit" className="pink-btn">Skapa produkt</button>
           <button type="button" onClick={() => navigate("/admin/products")} className="cancel-btn">Avbryt</button>
         </div>
       </form>

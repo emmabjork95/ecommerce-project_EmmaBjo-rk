@@ -87,13 +87,13 @@ export const Cart = () => {
       <h3 className="cart-total">Totalt: {total} kr</h3>
       <div className='cart-action'>
       <Link to="/">
-          <button className='back-btn'>Tillbaka</button>
+          <button className="pink-btn">Tillbaka</button>
         </Link>
         <button className="clear-cart-btn" onClick={handleResetCart}>
           Rensa kundvagn
         </button>
         <Link to="/checkout">
-         <button className='continue-btn'>Fortsätt</button>
+         <button className="pink-btn">Fortsätt</button>
          </Link>
       </div>
   

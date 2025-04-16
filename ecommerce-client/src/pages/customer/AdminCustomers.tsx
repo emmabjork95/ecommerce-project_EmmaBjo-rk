@@ -35,7 +35,7 @@ const AdminCustomers = () => {
   return (
     <div className="admin-customers">
       <h2 className="admin-customers-header">Hantera Kunder</h2>
-      <button className="create-product-btn" onClick={() => navigate("/admin/customers/create")}>Lägg till kund</button>
+      <button className="pink-btn" onClick={() => navigate("/admin/customers/create")}>Lägg till kund</button>
       <table className="admin-customers-table">
         <thead>
           <tr>
@@ -64,7 +64,7 @@ const AdminCustomers = () => {
               <td>{customer.city}</td>
               <td>{customer.country}</td>
               <td className="admin-customers-actions">
-                <button className="edit-button-admin" onClick={() => navigate(`/admin/edit-customer/${customer.id}`)}>
+                <button className="edit-btn" onClick={() => navigate(`/admin/edit-customer/${customer.id}`)}>
                    Redigera
                 </button>
                 <button className="delete-button-admin" onClick={() => handleDelete(customer.id!)} >

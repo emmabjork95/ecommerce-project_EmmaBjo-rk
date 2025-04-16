@@ -4,6 +4,7 @@ import { IOrder } from "../../types/IOrder";
 import { IProduct } from "../../types/IProduct";
 import { Link, useNavigate, useParams } from "react-router";
 import { getOrderById } from "../../services/apiOrders";
+import '../../styles/OrderDetails.css'
 
 
 const OrderDetails = () => {
@@ -83,9 +84,9 @@ const OrderDetails = () => {
     if (!order) return <p>Laddar order...</p>;
 
     return (
-        <div>
+        <div className="order-details-wrapper">
             <h2>Order #{order.id}</h2>
-            <p><strong>Kund1:</strong> {order.customer_firstname} {order.customer_lastname}</p>
+            <p><strong>Kund:</strong> {order.customer_firstname} {order.customer_lastname}</p>
             <p><strong>Email:</strong> {order.customer_email}</p>
             <p><strong>Telefon:</strong> {order.customer_phone}</p>
             <p><strong>Totalt pris:</strong> {order.total_price} kr</p>
@@ -93,11 +94,12 @@ const OrderDetails = () => {
             <p><strong>Datum:</strong> {new Date(order.created_at).toLocaleDateString()}</p>
             <p><strong>Orderstatus:</strong> {order.order_status}</p>
 
+            <div className="product-wrapper">
             <h3>Produkter i ordern</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Bild</th>
+                        <th></th>
                         <th>Produkt</th>
                         <th>Antal</th>
                         <th>Pris</th>
@@ -119,6 +121,7 @@ const OrderDetails = () => {
                                 <td>{product ? product.name : "Okänd produkt"}</td>
                                 <td>
                                     <input
+                                        className="quantity-btn"
                                         type="number"
                                         value={item.quantity}
                                         min="1"
@@ -128,13 +131,14 @@ const OrderDetails = () => {
                                 </td>
                                 <td>{item.unit_price} kr</td>
                                 <td>
-                                <button onClick={() => handleRemoveProduct(item.id)}>Ta bort</button>
+                                <button className="delete-button-admin" onClick={() => handleRemoveProduct(item.id)}>Ta bort</button>
                                 </td>
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
+            </div>
 
             <button onClick={handleDeleteOrder} style={{ backgroundColor: "red", color: "white" }}>
                 Ta bort hela ordern

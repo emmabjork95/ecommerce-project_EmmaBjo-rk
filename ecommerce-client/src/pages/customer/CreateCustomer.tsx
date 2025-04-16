@@ -1,13 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { createCustomer } from "../../services/apiCustomer";
-import { ICustomer } from "../../types/ICustomer";
+import {  INewCustomer } from "../../types/ICustomer";
 import { useNavigate } from "react-router";
 import '../../styles/CreateCustomer.css'
 
 const CreateCustomer = () => {
   const navigate = useNavigate();
   
-  const [customer, setCustomer] = useState<ICustomer>({
+  const [customer, setCustomer] = useState<INewCustomer>({
     firstname: "",
     lastname: "",
     email: "",
@@ -34,7 +34,7 @@ const CreateCustomer = () => {
 
   return (
     <div className="create-customer-container">
-      <h1 className="create-customer-header">Skapa ny kund</h1>
+      <h1 className="create-customer-title">Skapa ny kund</h1>
       <form className="create-customer-form" onSubmit={handleSubmit}>
 
       <div className="create-customer-group">
@@ -79,7 +79,7 @@ const CreateCustomer = () => {
       </div>
 
         <div className="create-customer-buttons">
-          <button type="submit" className="create-customer-btn">Skapa kund</button>
+          <button type="submit" className="pink-btn">Skapa kund</button>
           <button type="button" className="cancel-btn" onClick={() => navigate("/admin/customers")} >
             Avbryt
           </button>

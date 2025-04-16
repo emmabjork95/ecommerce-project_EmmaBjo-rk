@@ -14,23 +14,6 @@
     margin-bottom: 20px;
 }
 
-.create-product-btn {
-    background-color: #ff66b2;
-    color: white;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    margin-bottom: 20px;
-}
-
-.create-product-btn:hover {
-    transform: scale(1.05);
-    background-color: #e35b98;
-}
-
 .product-table {
     width: 100%;
     border-collapse: collapse;
@@ -68,22 +51,6 @@
     display: flex;
     gap: 10px;
 }
-
-.edit-button-admin {
-    background-color: rgb(160, 200, 173);
-    padding: 8px 12px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.edit-button-admin:hover {
-    transform: scale(1.05);
-    background-color: rgb(124, 187, 145);
-}
-
 
 .delete-button-admin {
     background-color: #e6949c;

@@ -5,6 +5,7 @@ import { INewCustomer } from "../types/ICustomer";
 import { createCustomer, getCustomerByEmail } from "../services/apiCustomer";
 import { createOrder, updateOrderStatus } from "../services/apiOrders";
 import { IOrderItem } from "../types/IOrderItem";
+import '../styles/Checkout.css'
 
 
 export const Checkout = () => {
@@ -86,8 +87,8 @@ export const Checkout = () => {
   const order = await createOrder({
     customer_id: customerId,
     total_price: totalPrice,
-    payment_status: "Unpaid",
-    order_status: "Pending",
+    payment_status: "Obetald",
+    order_status: "Behandlas",
     order_items: orderItems,
     payment_id: "",
     customer_firstname: customer.firstname,
@@ -123,7 +124,8 @@ return order.id;
       const lineItems = cart.map(item=> ({
         name: item.product.name,
         price: item.product.price,
-        quantity: item.quantity
+        quantity: item.quantity,
+        image: item.product.image,
       }));
 
       const payload = {
@@ -148,9 +150,9 @@ return order.id;
 
         if (data && data.session_id) {
           await updateOrderStatus(Number(orderID), {
-            payment_status: "Unpaid",
+            payment_status: "Obetald",
             payment_id: data.session_id,
-            order_status: "Pending",
+            order_status: "Behandlas",
           });
           console.log("Order uppdaterad med Stripe session ID:", data.session_id);
         }
@@ -165,28 +167,33 @@ return order.id;
       }
  
     }
+      const total = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
   return (
-      <>
+      <div className="checkout-wrapper">
       <form action="" onSubmit={handleSubmit}>
-        <h1>Checkout</h1>
-        
-        <h3>Varukorg</h3>
+     
+        <h2 className="checkout-header">Checkout</h2>
+        <div className="checkout-list">
           {cart.map((item) => (
-              <li key={item.product.id}>
-                  <div>
+              <li key={item.product.id} className="checkout-item">
+                  <div className="checkout-image">
                       <img
                           src={item.product.image}
                           alt={item.product.name}
-                          style={{ width: "50px", height: "auto", marginRight: "10px" }}
+                          style={{ width: "80px", height: "80px" }}
                       />
-                      <span>{item.product.name} - Antal: {item.quantity}</span>
-                  </div>
+                    </div>
+                      <p >{item.product.name} </p>
+                      <p > Antal: {item.quantity}</p>
               </li>
           ))}
+              <h3 className="checkout-total">Totalt: {total} kr</h3>
+          </div>
 
         <div className="checkout-form">
-          <h3>Kund info (formulär)</h3>
+          <h3>Kunduppgifter</h3>
+          <div className="checkout-grid">
           <label>
             Förnamn:
           <input type="text" name="firstname" value={customer.firstname} onChange={handleInputChange} required />
@@ -219,17 +226,18 @@ return order.id;
             Land:
             <input type="text" name="country" value={customer.country} onChange={handleInputChange} required />
           </label>
+          </div>
         </div>
       
-        <button type="submit" style={{ marginBottom: "20px" }}>Till betalning</button>
+        <button className="buy-btn" type="submit" >Till betalning</button>
       </form>
     
   <div>
       <Link to="/cart">
-          <button className='back-btn'>Tillbaka</button>
+          <button className="pink-btn">Tillbaka</button>
       </Link>
   </div>
 
-</>
+</div>
   )
 }
