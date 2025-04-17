@@ -38,15 +38,12 @@ export const Checkout = () => {
 
   const handleCustomer = async () => {
     try {
-      // Kontrollera om kunden finns via e-post
       let customerId = null;
       const existingCustomer = await getCustomerByEmail(customer.email);
 
       if (existingCustomer) {
-          // Om kunden finns, använd den kundens ID
           customerId = existingCustomer.id;
       } else {
-          // Om kunden inte finns, skapa en ny kund
           const newCustomer = await createCustomer({
                 firstname: customer.firstname,
                 lastname: customer.lastname,
@@ -57,7 +54,6 @@ export const Checkout = () => {
                 city: customer.city,
                 country: customer.country,
             });
-
             customerId = newCustomer.id; 
           }
           return customerId;
@@ -69,45 +65,44 @@ export const Checkout = () => {
 
  const handleOrder = async (customerId: number) => {
   try {
-  const totalPrice = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
-  const orderItems: IOrderItem[] = cart.map((item) => ({
-    id: 0, 
-    order_id: 0, 
-    product_id: item.product.id, 
-    product_name: item.product.name,
-    quantity: item.quantity,
-    unit_price: item.product.price,
-    created_at: new Date().toISOString(), 
-    image: item.product.image, 
-    total_price: item.product.price * item.quantity
-  }));
+    const orderItems: IOrderItem[] = cart.map((item) => ({
+      id: 0, 
+      order_id: 0, 
+      product_id: item.product.id, 
+      product_name: item.product.name,
+      quantity: item.quantity,
+      unit_price: item.product.price,
+      created_at: new Date().toISOString(), 
+      image: item.product.image, 
+      total_price: item.product.price * item.quantity
+    }));
 
-  // Skapa en ny order
-  const order = await createOrder({
-    customer_id: customerId,
-    total_price: totalPrice,
-    payment_status: "Obetald",
-    order_status: "Behandlas",
-    order_items: orderItems,
-    payment_id: "",
-    customer_firstname: customer.firstname,
-    customer_lastname: customer.lastname,
-    customer_email: customer.email,
-    customer_phone: customer.phone,
-    customer_street_address: customer.street_address,
-    customer_postal_code: customer.postal_code,
-    customer_city: customer.city,
-    customer_country: customer.country,
-    customers_created_at: new Date().toISOString(),
-});
+    const order = await createOrder({
+      customer_id: customerId,
+      total_price: totalPrice,
+      payment_status: "Obetald",
+      order_status: "Behandlas",
+      order_items: orderItems,
+      payment_id: "",
+      customer_firstname: customer.firstname,
+      customer_lastname: customer.lastname,
+      customer_email: customer.email,
+      customer_phone: customer.phone,
+      customer_street_address: customer.street_address,
+      customer_postal_code: customer.postal_code,
+      customer_city: customer.city,
+      customer_country: customer.country,
+      customers_created_at: new Date().toISOString(),
+  });
 
-console.log("Order skapad:", order);
-return order.id;
- } catch (error) {
-  console.error("Fel vid skapande av order:", error);
-  throw error;
- }
+  console.log("Order skapad:", order);
+  return order.id;
+  } catch (error) {
+    console.error("Fel vid skapande av order:", error);
+    throw error;
+  }
 };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -141,12 +136,10 @@ return order.id;
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(payload) //
+          body: JSON.stringify(payload)
         });
   
         const data = await response.json();
-
-        //// 
 
         if (data && data.session_id) {
           await updateOrderStatus(Number(orderID), {
@@ -193,45 +186,37 @@ return order.id;
 
         <div className="checkout-form">
           <h3>Kunduppgifter</h3>
+
           <div className="checkout-grid">
-          <label>
-            Förnamn:
-          <input type="text" name="firstname" value={customer.firstname} onChange={handleInputChange} required />
+          <label>Förnamn:
+            <input type="text" name="firstname" value={customer.firstname} onChange={handleInputChange} required />
           </label>
-          <label>
-            Efternamn:
+          <label>Efternamn:
             <input type="text" name="lastname" value={customer.lastname} onChange={handleInputChange} required />
           </label>
-          <label>
-            E-post:
+          <label>E-post:
             <input type="email" name="email" value={customer.email} onChange={handleInputChange} required />
           </label>
-          <label>
-            Telefon:
+          <label>Telefon:
             <input type="text" name="phone" value={customer.phone} onChange={handleInputChange} required />
           </label>
-          <label>
-            Adress:
+          <label>Adress:
             <input type="text" name="street_address" value={customer.street_address} onChange={handleInputChange} required />
           </label>
-          <label>
-            Postkod:
+          <label>Postkod:
             <input type="text" name="postal_code" value={customer.postal_code} onChange={handleInputChange} required />
           </label>
-          <label>
-            Stad:
+          <label>Stad:
             <input type="text" name="city" value={customer.city} onChange={handleInputChange} required />
           </label>
-          <label>
-            Land:
+          <label>Land:
             <input type="text" name="country" value={customer.country} onChange={handleInputChange} required />
           </label>
           </div>
         </div>
-      
+
         <button className="buy-btn" type="submit" >Till betalning</button>
       </form>
-    
   <div>
       <Link to="/cart">
           <button className="pink-btn">Tillbaka</button>

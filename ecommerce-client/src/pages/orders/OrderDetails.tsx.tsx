@@ -14,7 +14,6 @@ const OrderDetails = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    
         const fetchOrder = async () => {
             if (!id) return;
             try{
@@ -126,12 +125,11 @@ const OrderDetails = () => {
                                         value={item.quantity}
                                         min="1"
                                         onChange={(e) => item.id !== null && handleUpdateQuantity(item.id, Number(e.target.value))}
-
                                     />
                                 </td>
                                 <td>{item.unit_price} kr</td>
                                 <td>
-                                <button className="delete-button-admin" onClick={() => handleRemoveProduct(item.id)}>Ta bort</button>
+                                <button className="delete-btn-admin" onClick={() => handleRemoveProduct(item.id)}>Radera</button>
                                 </td>
                             </tr>
                         );
@@ -140,13 +138,12 @@ const OrderDetails = () => {
             </table>
             </div>
 
-            <button onClick={handleDeleteOrder} style={{ backgroundColor: "red", color: "white" }}>
-                Ta bort hela ordern
-            </button>
-
-            <Link to="/admin/orders">
-                <button>Tillbaka till ordrar</button>
-            </Link>
+            <div className="order-actions-btn">
+                <button className="clear-all-btn" onClick={handleDeleteOrder}>Radera hela ordern</button>
+                <Link to="/admin/orders">
+                    <button className="pink-btn">Tillbaka</button>
+                </Link>
+            </div>
         </div>
     );
 };

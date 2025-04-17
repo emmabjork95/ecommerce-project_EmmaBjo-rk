@@ -61,10 +61,10 @@ const AdminOrders = () => {
         <td>{order.payment_status}</td>
         <td>{new Date(order.created_at).toLocaleDateString()}</td>
         <td className="admin-orders-actions">
-          <button className="delete-button-admin" onClick={() => handleDelete(order.id)}>Ta bort</button>
-          <Link to={`/admin/orders/${order.id}`}>
+        <Link to={`/admin/orders/${order.id}`}>
             <button className="edit-btn">Redigera</button>
           </Link>
+          <button className="delete-btn-admin" onClick={() => handleDelete(order.id)}>Radera</button>
         </td>
       </tr>
     ))}

@@ -1,4 +1,4 @@
-.admin-customers {
+.admin-customers-container {
     color: black;
     background-color: white;
     border-radius: 20px;
@@ -8,12 +8,6 @@
     padding: 40px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-}
-
-.admin-customers-header {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
 }
 
 .admin-customers-table th,

@@ -64,7 +64,7 @@ const ProductDetails = () => {
       <p><strong>ID:</strong> {product.id}</p>
       <p><strong>Pris:</strong> {product.price} kr</p>
       <p><strong>Beskrivning:</strong> {product.description}</p>
-      <p><strong>Stock:</strong> {product.stock}</p>
+      <p><strong>I lager:</strong> {product.stock}</p>
       <p><strong>Kategori:</strong> {product.category}</p>
       <button onClick={addToCart} className="add-to-cart-btn">Lägg i varukorgen</button>
     </div>

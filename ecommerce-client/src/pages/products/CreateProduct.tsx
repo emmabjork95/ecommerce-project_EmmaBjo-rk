@@ -32,44 +32,33 @@ const CreateProduct = () => {
   return (
     <div className="create-product-container">
       <h1 className="create-product-header">Skapa ny produkt</h1>
-      <form className="create-product-form" onSubmit={handleSubmit}>
-        <div className="create-product-group">
-          <label className="create-product-label">Produktnamn:</label>
-          <input type="text" name="name" value={product.name} onChange={handleChange} placeholder="Produktnamn" required className="create-product-input" />
-        </div>
-
-        <div className="create-product-group">
-          <label className="create-product-label">Beskrivning:</label>
+      <form className="create-edit-form" onSubmit={handleSubmit}>
+        
+          <label>Produktnamn:</label>
+          <input type="text" name="name" value={product.name} onChange={handleChange} placeholder="Produktnamn" required/>
+    
+          <label>Beskrivning:</label>
           <textarea name="description" value={product.description} onChange={handleChange} placeholder="Beskrivning" required className="create-product-textarea"></textarea>
-        </div>
 
-        <div className="create-product-group">
-          <label className="create-product-label">Pris:</label>
-          <input type="number" name="price" value={product.price} onChange={handleChange} placeholder="Pris" required className="create-product-input" />
-        </div>
-
-        <div className="create-product-group">
-          <label className="create-product-label">Lagerantal:</label>
-          <input type="number" name="stock" value={product.stock} onChange={handleChange} placeholder="Lagerantal" required className="create-product-input" />
-        </div>
-
-        <div className="create-product-group">
-          <label className="create-product-label">Kategori:</label>
+          <label>Pris:</label>
+          <input type="number" name="price" value={product.price} onChange={handleChange} placeholder="Pris" required/>
+  
+          <label>Lagerantal:</label>
+          <input type="number" name="stock" value={product.stock} onChange={handleChange} placeholder="Lagerantal" required/>
+   
+          <label>Kategori:</label>
           <select name="category" value={product.category} onChange={handleChange} required className="create-product-select">
             <option value="">Välj kategori</option>
             <option value="Pennor">Pennor</option>
             <option value="Böcker">Böcker</option>
           </select>
-        </div>
 
-        <div className="create-product-group">
-          <label className="create-product-label">Bild-URL:</label>
-          <input type="text" name="image" value={product.image} onChange={handleChange} placeholder="Bild-URL" required className="create-product-input" />
-        </div>
-
-        <div className="create-product-buttons">
-          <button type="submit" className="pink-btn">Skapa produkt</button>
+          <label>Bild-URL:</label>
+          <input type="text" name="image" value={product.image} onChange={handleChange} placeholder="Bild-URL" required/>
+      
+        <div className="create-edit-btns">
           <button type="button" onClick={() => navigate("/admin/products")} className="cancel-btn">Avbryt</button>
+          <button type="submit" className="pink-btn">Skapa produkt</button>
         </div>
       </form>
     </div>

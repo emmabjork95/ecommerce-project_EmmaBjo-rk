@@ -33,8 +33,8 @@ const AdminCustomers = () => {
   };
 
   return (
-    <div className="admin-customers">
-      <h2 className="admin-customers-header">Hantera Kunder</h2>
+    <div className="admin-customers-container">
+      <h2 className="admin-header">Hantera Kunder</h2>
       <button className="pink-btn" onClick={() => navigate("/admin/customers/create")}>Lägg till kund</button>
       <table className="admin-customers-table">
         <thead>
@@ -67,8 +67,8 @@ const AdminCustomers = () => {
                 <button className="edit-btn" onClick={() => navigate(`/admin/edit-customer/${customer.id}`)}>
                    Redigera
                 </button>
-                <button className="delete-button-admin" onClick={() => handleDelete(customer.id!)} >
-                   Ta bort
+                <button className="delete-btn-admin" onClick={() => handleDelete(customer.id!)} >
+                  Radera
                 </button>
               </td>
             </tr>

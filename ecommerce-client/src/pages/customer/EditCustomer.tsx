@@ -50,55 +50,40 @@ export const EditCustomer = () => {
   if (!customer) return <p>Ingen kund hittades</p>;
 
   return (
-    <div className="edit-customer-container">
-    <form onSubmit={handleSubmit} className="edit-customer-form">
-      <h2 className="edit-customer-header">Redigera Kund</h2>
-      
-      <div className="edit-customer-group">
-          <label className="edit-customer-label">Förnamn</label>
-          <input type="text" name="firstname" value={customer.firstname} onChange={handleChange} className="edit-customer-input" required />
-        </div>
+    <div className="base-container">
+      <form onSubmit={handleSubmit} className="create-edit-form">
+        <h2 className="admin-header">Redigera Kund</h2>
+        
+        <label>Förnamn</label>
+        <input type="text" name="firstname" value={customer.firstname} onChange={handleChange} required />
+        
+        <label>Efternamn</label>
+        <input type="text" name="lastname" value={customer.lastname} onChange={handleChange} required />
+        
+        <label>Email</label>
+        <input type="email" name="email" value={customer.email} onChange={handleChange} required />
+        
+        <label>Telefon</label>
+        <input type="text" name="phone" value={customer.phone} onChange={handleChange} required />
+        
+        <label>Gatuadress</label>
+        <input type="text" name="street_address" value={customer.street_address} onChange={handleChange} required />
+        
+        <label>Postnummer</label>
+        <input type="text" name="postal_code" value={customer.postal_code} onChange={handleChange} required />
+        
+        <label>Stad</label>
+        <input type="text" name="city" value={customer.city} onChange={handleChange} required />
+        
+        <label>Land</label>
+        <input type="text" name="country" value={customer.country} onChange={handleChange} required />
 
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Efternamn</label>
-          <input type="text" name="lastname" value={customer.lastname} onChange={handleChange} className="edit-customer-input" required />
+        <div className="create-edit-btns">
+          <button type="button" onClick={() => navigate("/admin/customers")} className="cancel-btn">Avbryt</button>
+          <button type="submit" className="pink-btn">Spara ändringar</button>
         </div>
-
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Email</label>
-          <input type="email" name="email" value={customer.email} onChange={handleChange} className="edit-customer-input" required />
-        </div>
-
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Telefon</label>
-          <input type="text" name="phone" value={customer.phone} onChange={handleChange} className="edit-customer-input" required />
-        </div>
-
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Gatuadress</label>
-          <input type="text" name="street_address" value={customer.street_address} onChange={handleChange} className="edit-customer-input" required />
-        </div>
-
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Postnummer</label>
-          <input type="text" name="postal_code" value={customer.postal_code} onChange={handleChange} className="edit-customer-input" required />
-        </div>
-
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Stad</label>
-          <input type="text" name="city" value={customer.city} onChange={handleChange} className="edit-customer-input" required />
-        </div>
-
-        <div className="edit-customer-group">
-          <label className="edit-customer-label">Land</label>
-          <input type="text" name="country" value={customer.country} onChange={handleChange} className="edit-customer-input" required />
-        </div>
-
-      <div className="edit-customer-buttons">
-      <button type="submit" className="pink-btn">Spara ändringar</button>
-      <button type="button" onClick={() => navigate("/admin/customers")} className="cancel-btn">Avbryt</button>
-      </div>
-    </form>
+        
+      </form>
     </div>
   );
 };

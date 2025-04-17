@@ -33,56 +33,36 @@ const CreateCustomer = () => {
   };
 
   return (
-    <div className="create-customer-container">
-      <h1 className="create-customer-title">Skapa ny kund</h1>
-      <form className="create-customer-form" onSubmit={handleSubmit}>
+    <div className="base-container">
+      <h1 className="admin-header">Skapa ny kund</h1>
+      <form className="create-edit-form" onSubmit={handleSubmit}>
+        <label>Förnamn:</label>
+        <input type="text" name="firstname" value={customer.firstname} onChange={handleChange} required />
 
-      <div className="create-customer-group">
-        <label className="create-customer-label">Förnamn:</label>
-        <input className="create-customer-input" type="text" name="firstname" value={customer.firstname} onChange={handleChange} required />
-      </div>
+        <label>Efternamn:</label>
+        <input type="text" name="lastname" value={customer.lastname} onChange={handleChange} required />
+   
+        <label>Email:</label>
+        <input type="email" name="email" value={customer.email} onChange={handleChange} required />
+    
+        <label>Telefon:</label>
+        <input type="text" name="phone" value={customer.phone} onChange={handleChange} required />
+    
+        <label>Adress:</label>
+        <input type="text" name="street_address" value={customer.street_address} onChange={handleChange} required />
 
-      <div className="create-customer-group">
-        <label className="create-customer-label">Efternamn:</label>
-        <input className="create-customer-input" type="text" name="lastname" value={customer.lastname} onChange={handleChange} required />
-      </div>
+        <label>Postkod:</label>
+        <input type="text" name="postal_code" value={customer.postal_code} onChange={handleChange} required />
+      
+        <label>Stad:</label>
+        <input type="text" name="city" value={customer.city} onChange={handleChange} required />
+    
+        <label>Land:</label>
+        <input type="text" name="country" value={customer.country} onChange={handleChange} required />
 
-      <div className="create-customer-group">
-        <label className="create-customer-label">Email:</label>
-        <input className="create-customer-input" type="email" name="email" value={customer.email} onChange={handleChange} required />
-      </div>
-
-
-      <div className="create-customer-group">
-        <label className="create-customer-label">Telefon:</label>
-        <input className="create-customer-input" type="text" name="phone" value={customer.phone} onChange={handleChange} required />
-      </div>
-
-      <div className="create-customer-group">
-        <label className="create-customer-label">Adress:</label>
-        <input className="create-customer-input" type="text" name="street_address" value={customer.street_address} onChange={handleChange} required />
-      </div>
-
-      <div className="create-customer-group">
-        <label className="create-customer-label">Postkod:</label>
-        <input className="create-customer-input" type="text" name="postal_code" value={customer.postal_code} onChange={handleChange} required />
-      </div>
-
-      <div className="create-customer-group">
-        <label className="create-customer-label">Stad:</label>
-        <input className="create-customer-input" type="text" name="city" value={customer.city} onChange={handleChange} required />
-      </div>
-
-      <div className="create-customer-group">
-        <label className="create-customer-label">Land:</label>
-        <input className="create-customer-input" type="text" name="country" value={customer.country} onChange={handleChange} required />
-      </div>
-
-        <div className="create-customer-buttons">
+        <div className="create-edit-btns">
           <button type="submit" className="pink-btn">Skapa kund</button>
-          <button type="button" className="cancel-btn" onClick={() => navigate("/admin/customers")} >
-            Avbryt
-          </button>
+          <button type="button" className="cancel-btn" onClick={() => navigate("/admin/customers")}>Avbryt</button>
         </div>
       </form>
     </div>

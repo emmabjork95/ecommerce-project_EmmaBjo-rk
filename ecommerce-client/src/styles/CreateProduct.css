@@ -11,24 +11,8 @@
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
-    color: black;
 }
 
-.create-product-form {
-    width: 100%;
-}
-
-.create-product-group {
-    margin-bottom: 15px;
-}
-
-.create-product-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.create-product-input,
 .create-product-textarea,
 .create-product-select {
     width: 100%;
@@ -37,30 +21,4 @@
     border: 1px solid #ddd;
     font-size: 1rem;
     box-sizing: border-box;
-}
-
-.create-product-textarea {
-    min-height: 100px;
-}
-
-.create-product-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.cancel-btn {
-    background-color: #e6949c;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.cancel-btn:hover {
-    transform: scale(1.05);
-    background-color: #db7d87;
 }

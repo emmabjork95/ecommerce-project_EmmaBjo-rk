@@ -89,7 +89,7 @@ export const Cart = () => {
       <Link to="/">
           <button className="pink-btn">Tillbaka</button>
         </Link>
-        <button className="clear-cart-btn" onClick={handleResetCart}>
+        <button className="clear-all-btn" onClick={handleResetCart}>
           Rensa kundvagn
         </button>
         <Link to="/checkout">
