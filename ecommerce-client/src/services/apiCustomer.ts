@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { ICustomer, INewCustomer } from "../types/ICustomer";
 
@@ -53,16 +52,15 @@ export const getCustomerById = async (id: number): Promise<ICustomer> => {
   }
 };
 
-  export const getCustomerByEmail = async (email: string): Promise<ICustomer | null> => {
-    try {
-      const response = await axios.get(`http://localhost:3000/customers/email/${email}`);
-      return response.data; 
-    } catch (error: any) {
-      if (error.response && error.response.status === 404) {
-        return null;
-      }
-      console.error("Error fetching customer by email:", error);
-      throw error;
+export const getCustomerByEmail = async (email: string): Promise<ICustomer | null> => {
+  try {
+    const response = await axios.get(`http://localhost:3000/customers/email/${email}`);
+    return response.data; 
+  } catch (error: any) {
+    if (error.response && error.response.status === 404) {
+      return null;
     }
-  };
+    throw error;
+  }
+};
   

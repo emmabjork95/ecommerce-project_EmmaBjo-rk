@@ -27,7 +27,7 @@
     justify-content: space-around;
     padding: 15px;
     border-bottom: 1px solid #ddd;
-    gap: 30px; /* mellan bild och info */
+    gap: 30px;
 }
 
 .checkout-image img {
@@ -41,7 +41,6 @@
     margin: 5px;
     font-size: 1rem;
     font-weight: bold;
-
 }
 
 .buy-btn {

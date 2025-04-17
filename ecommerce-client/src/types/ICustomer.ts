@@ -1,4 +1,3 @@
-
 export interface ICustomer {
   id: number
   firstname: string

@@ -7,7 +7,6 @@ import { createOrder, updateOrderStatus } from "../services/apiOrders";
 import { IOrderItem } from "../types/IOrderItem";
 import '../styles/Checkout.css'
 
-
 export const Checkout = () => {
   const {cart } = useCart();
 
@@ -34,7 +33,6 @@ export const Checkout = () => {
       setCustomer(updatedCustomer);
       localStorage.setItem("checkoutCustomer", JSON.stringify(updatedCustomer));
     };
-
 
   const handleCustomer = async () => {
     try {
@@ -110,11 +108,6 @@ export const Checkout = () => {
       
       const customerId = await handleCustomer();
       const orderID = await handleOrder(customerId);
-      console.log("Ordern skapad med ID:", orderID);
-      
-      console.log("Kund-ID:", customerId);
-      console.log("Order-ID:", orderID);
-      console.log("Cart:", cart);
 
       const lineItems = cart.map(item=> ({
         name: item.product.name,
@@ -127,8 +120,6 @@ export const Checkout = () => {
         line_items: lineItems,
         order_id: orderID
       }
-
-      console.log("Payload som skickas:", payload);
 
       try {
         const response = await fetch('http://localhost:3000/create-checkout-session', {
@@ -158,14 +149,12 @@ export const Checkout = () => {
       } catch (error) {
         console.error("Något gick fel:", error);
       }
- 
     }
       const total = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
   return (
       <div className="checkout-wrapper">
       <form action="" onSubmit={handleSubmit}>
-     
         <h2 className="checkout-header">Checkout</h2>
         <div className="checkout-list">
           {cart.map((item) => (
@@ -183,10 +172,8 @@ export const Checkout = () => {
           ))}
               <h3 className="checkout-total">Totalt: {total} kr</h3>
           </div>
-
         <div className="checkout-form">
           <h3>Kunduppgifter</h3>
-
           <div className="checkout-grid">
           <label>Förnamn:
             <input type="text" name="firstname" value={customer.firstname} onChange={handleInputChange} required />
@@ -222,7 +209,6 @@ export const Checkout = () => {
           <button className="pink-btn">Tillbaka</button>
       </Link>
   </div>
-
 </div>
   )
 }

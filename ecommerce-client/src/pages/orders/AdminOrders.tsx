@@ -4,7 +4,6 @@ import { IOrder } from "../../types/IOrder";
 import { Link } from "react-router";
 import '../../styles/AdminOrders.css'
 
-
 const AdminOrders = () => {
   const [orders, setOrders] = useState<IOrder[]>([]);
 
@@ -33,45 +32,45 @@ const AdminOrders = () => {
   };
   
   return (
- <div className="admin-orders">
-<h2 className="admin-orders-header">Hantera Ordrar</h2>
-<table className="admin-orders-table">
-  <thead>
-    <tr>
-      <th>Order ID</th>
-      <th>Kund</th>
-      <th>Email</th>
-      <th>Telefon</th>
-      <th>Pris</th>
-      <th>Betalningsstatus</th>
-      <th>Datum</th>
-      <th>Åtgärder</th>
-    </tr>
-  </thead>
-  <tbody>
-    {orders.map((order) => (
-      <tr key={order.id}>
-        <td>
-          <Link to={`/admin/orders/${order.id}`}>{order.id}</Link>
-        </td>
-        <td>{order.customer_firstname} {order.customer_lastname}</td>
-        <td>{order.customer_email}</td>
-        <td>{order.customer_phone}</td>
-        <td>{order.total_price} kr</td>
-        <td>{order.payment_status}</td>
-        <td>{new Date(order.created_at).toLocaleDateString()}</td>
-        <td className="admin-orders-actions">
-        <Link to={`/admin/orders/${order.id}`}>
-            <button className="edit-btn">Redigera</button>
-          </Link>
-          <button className="delete-btn-admin" onClick={() => handleDelete(order.id)}>Radera</button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-</div>
-  );
-};
+  <div className="admin-orders">
+    <h2 className="admin-orders-header">Hantera Ordrar</h2>
+    <table className="admin-orders-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Kund</th>
+          <th>Email</th>
+          <th>Telefon</th>
+          <th>Pris</th>
+          <th>Betalningsstatus</th>
+          <th>Datum</th>
+          <th>Åtgärder</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((order) => (
+          <tr key={order.id}>
+            <td>
+              <Link to={`/admin/orders/${order.id}`}>{order.id}</Link>
+            </td>
+            <td>{order.customer_firstname} {order.customer_lastname}</td>
+            <td>{order.customer_email}</td>
+            <td>{order.customer_phone}</td>
+            <td>{order.total_price} kr</td>
+            <td>{order.payment_status}</td>
+            <td>{new Date(order.created_at).toLocaleDateString()}</td>
+            <td className="admin-orders-actions">
+              <Link to={`/admin/orders/${order.id}`}>
+                <button className="edit-btn">Redigera</button>
+              </Link>
+              <button className="delete-btn-admin" onClick={() => handleDelete(order.id)}>Radera</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+    );
+  };
 
 export default AdminOrders;

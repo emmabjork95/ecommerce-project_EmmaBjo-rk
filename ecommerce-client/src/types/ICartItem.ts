@@ -1,4 +1,3 @@
-
 import { IProduct } from "../types/IProduct";
 
 export class ICartItem {

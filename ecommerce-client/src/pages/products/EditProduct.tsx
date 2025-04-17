@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getProductById, updateProduct } from "../../services/apiProducts";
 import { IProduct } from "../../types/IProduct";
@@ -22,12 +22,12 @@ const EditProduct = () => {
     fetchProduct();
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (!product) return;
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!product || !product.id) {
       setError("Produktens ID saknas eller är ogiltigt.");
@@ -59,42 +59,32 @@ const EditProduct = () => {
           />
         )}
 
-        <div className="create-product-group">
-          <label className="create-product-label">Produktnamn:</label>
-          <input type="text" name="name" value={product.name} onChange={handleChange} className="create-product-input" />
-        </div>
+        <div className="create-edit-form">
+          <label>Produktnamn:</label>
+          <input type="text" name="name" value={product.name} onChange={handleChange} />
+   
+          <label>Pris:</label>
+          <input type="number" name="price" value={product.price} onChange={handleChange} />
+      
+          <label>Lagerantal:</label>
+          <input type="number" name="stock" value={product.stock} onChange={handleChange} />
 
-        <div className="create-product-group">
-          <label className="create-product-label">Pris:</label>
-          <input type="number" name="price" value={product.price} onChange={handleChange} className="create-product-input" />
-        </div>
-
-        <div className="create-product-group">
-          <label className="create-product-label">Lagerantal:</label>
-          <input type="number" name="stock" value={product.stock} onChange={handleChange} className="create-product-input" />
-        </div>
-
-        <div className="create-product-group">
-          <label className="create-product-label">Kategori:</label>
+          <label>Kategori:</label>
           <select name="category" value={product.category} onChange={handleChange} className="create-product-select">
             <option value="Pennor">Pennor</option>
             <option value="Böcker">Böcker</option>
           </select>
-        </div>
-
-        <div className="create-product-group">
-          <label className="create-product-label">Beskrivning:</label>
+       
+          <label>Beskrivning:</label>
           <textarea name="description" value={product.description} onChange={handleChange} className="create-product-textarea"></textarea>
+   
+          <label>Bild-URL:</label>
+          <input type="text" name="image" value={product.image} onChange={handleChange} />
         </div>
 
-        <div className="create-product-group">
-          <label className="create-product-label">Bild-URL:</label>
-          <input type="text" name="image" value={product.image} onChange={handleChange} className="create-product-input" />
-        </div>
-
-        <div className="create-product-buttons">
-          <button type="submit" className="pink-btn">Spara ändringar</button>
+        <div className="create-edit-btns">
           <button type="button" onClick={() => navigate("/admin/products")} className="cancel-btn">Avbryt</button>
+          <button type="submit" className="pink-btn">Spara ändringar</button>
         </div>
       </form>
     </div>

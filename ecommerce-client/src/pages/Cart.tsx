@@ -4,14 +4,12 @@ import { CartActionType } from '../reducers/CartReducer';
 import { IProduct } from '../types/IProduct';
 import '../styles/Cart.css'
 
-
 export interface CartItem {
   product: IProduct;
   quantity: number;
 }
 export const Cart = () => {
   const { cart, dispatch } = useCart();
-
 
   const handleIncrease = (productId: number) => {
     const cartItem = cart.find((item) => item.product.id === productId);
@@ -33,21 +31,18 @@ export const Cart = () => {
     });
   };
   
-
   const handleRemove = (id: number) => {
     dispatch({ type: CartActionType.REMOVE_ITEM, payload: id });
   };
 
   const handleResetCart = () => {
     const confirmDelete = window.confirm("Är du säker på att du vill rensa kundvagnen?");
-    
     if (confirmDelete) {
       dispatch({ type: CartActionType.RESET_CART, payload: null });
     }
   };
   
   const total = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-
 
   if (cart.length === 0) {
     return (
@@ -60,7 +55,6 @@ export const Cart = () => {
       </div>
     );
   }
-
 
   return (
     <div className='cart-wrapper'>
@@ -96,6 +90,5 @@ export const Cart = () => {
          <button className="pink-btn">Fortsätt</button>
          </Link>
       </div>
-  
   </div>
 )}

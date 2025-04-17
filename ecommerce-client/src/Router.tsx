@@ -15,8 +15,6 @@ import AdminProducts from "./pages/products/AdminProducts.tsx";
 import { Checkout } from "./pages/Checkout.tsx";
 import { OrderConfirmation } from "./pages/OrderConfirmation.tsx";
 
-
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -42,15 +40,12 @@ const router = createBrowserRouter([
                 path: "order/success",
                 element: <OrderConfirmation></OrderConfirmation>
             },
-        
-          
         ],
     },
     {
         path: "/admin",
         element: <AdminLayout></AdminLayout>,
         children: [
-           
             {
                 path: "products",
                 element: <AdminProducts></AdminProducts>
@@ -83,10 +78,8 @@ const router = createBrowserRouter([
                 path: "orders/:id",
                 element: <OrderDetails></OrderDetails>
             },
-
         ]
     }
-  
 ])
 
 export default router;

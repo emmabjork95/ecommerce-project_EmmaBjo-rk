@@ -3,7 +3,6 @@ import { createCustomer } from "../../services/apiCustomer";
 import {  INewCustomer } from "../../types/ICustomer";
 import { useNavigate } from "react-router";
 
-
 const CreateCustomer = () => {
   const navigate = useNavigate();
   

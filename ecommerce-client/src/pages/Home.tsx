@@ -35,7 +35,6 @@ const Home = () => {
     });
   };
 
-
   const totalCartItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   if (loading) return <p>Laddar produkter...</p>;
@@ -43,21 +42,16 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      
       <div className="header-container">
-        <button className="pink-btn" onClick={() => navigate("/admin/products")}>
-          Admin
-        </button>
+        <button className="pink-btn" onClick={() => navigate("/admin/products")}>Admin</button>
         <div className="cart-btn" onClick={() => navigate("/cart")}>
           <FaShoppingCart size={30} />
           {totalCartItems > 0 && <span className="cart-count">{totalCartItems}</span>}
         </div>
       </div>
-
       <div className="home-header">
         <h1 className="title">ColourFlow</h1>
       </div>
-
       <div className="product-area">
         <div className="product-grid">
           {products.map((product) => (
@@ -77,8 +71,7 @@ const Home = () => {
                     e.stopPropagation(); 
                     addToCart(product);
                   }}
-                >Lägg till
-                </button>
+                >Lägg till</button>
               </div>
             </div>
           ))}

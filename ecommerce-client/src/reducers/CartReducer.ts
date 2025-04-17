@@ -45,7 +45,6 @@ export const CartReducer = (cart: ICartItem[], action: ICartAction) => {
           const totalQuantity = item.quantity + payload.quantity;
           return { ...item, quantity: totalQuantity > 0 ? totalQuantity : 1 };
         }
-
         return item;
       })
     }

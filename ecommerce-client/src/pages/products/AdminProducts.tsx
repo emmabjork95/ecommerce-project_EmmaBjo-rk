@@ -4,7 +4,6 @@ import { IProduct } from "../../types/IProduct";
 import { deleteProduct, getProducts } from "../../services/apiProducts";
 import '../../styles/AdminProducts.css';
 
-
 const AdminProducts = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
 

@@ -2,7 +2,6 @@ import { createContext, Dispatch, PropsWithChildren, useEffect, useReducer } fro
 import { CartReducer, ICartAction } from '../reducers/CartReducer';
 import { ICartItem } from '../types/ICartItem';
 
-
 export interface ICartContext {
   cart: ICartItem[];
   dispatch: Dispatch<ICartAction>;

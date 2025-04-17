@@ -9,7 +9,6 @@ export const EditCustomer = () => {
   const navigate = useNavigate();
   const [customer, setCustomer] = useState<ICustomer | null>(null);
 
-
   const fetchCustomer = async () => {
     try {
       if (customerId) {
@@ -24,7 +23,6 @@ export const EditCustomer = () => {
   useEffect(() => {
     fetchCustomer();
   }, [customerId]);
-
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (customer) {

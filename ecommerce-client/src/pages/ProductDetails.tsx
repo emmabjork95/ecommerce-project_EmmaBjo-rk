@@ -7,7 +7,6 @@ import { CartActionType } from "../reducers/CartReducer";
 import '../styles/ProductDetails.css'
 import { FaShoppingCart } from "react-icons/fa";
 
-
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>(); 
   const [product, setProduct] = useState<IProduct | null>(null);
@@ -37,7 +36,7 @@ const ProductDetails = () => {
   };
 
   const navigate = useNavigate();
-
+  
   const goBackHome = () => {
     navigate("/"); 
   };

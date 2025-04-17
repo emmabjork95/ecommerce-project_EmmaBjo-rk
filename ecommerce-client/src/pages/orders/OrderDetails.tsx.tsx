@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { IOrder } from "../../types/IOrder";
 import { IProduct } from "../../types/IProduct";
 import { Link, useNavigate, useParams } from "react-router";
-import { getOrderById } from "../../services/apiOrders";
+import { deleteOrder, deleteOrderItem, getOrderById, updateOrderItemQuantity } from "../../services/apiOrders";
 import '../../styles/OrderDetails.css'
-
+import { getProducts } from "../../services/apiProducts";
 
 const OrderDetails = () => {
     const { id } = useParams<{ id: string }>();
@@ -14,69 +13,64 @@ const OrderDetails = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-        const fetchOrder = async () => {
-            if (!id) return;
-            try{
-                const data = await getOrderById(Number(id));
-                setOrder(data);
-            } catch (error) {
-                setError("Kunde inte hämta order");
-            }
-        };
+    const fetchOrder = async () => {
+        if (!id) return;
+        try{
+            const data = await getOrderById(Number(id));
+            setOrder(data);
+        } catch (error) {
+            setError("Kunde inte hämta order");
+        }};
 
-            const fetchProducts = async () => {
-            try {
-                const response = await axios.get("http://localhost:3000/products");
-                setProducts(response.data);
-            } catch (error) {
-                setError("Kunde inte hämta produkter.");
-                console.error("Fel vid hämtning av produkter:", error);
-            }
-        };
+    const fetchProducts = async () => {
+        try {
+            const data = await getProducts();
+            setProducts(data);
+        } catch (error) {
+            setError("Kunde inte hämta produkter.");
+            console.error("Fel vid hämtning av produkter:", error);
+        }};
 
-        useEffect(() => {
-            fetchOrder(),
-            fetchProducts();
-        }, [id]);
+     useEffect(() => {
+        fetchOrder(),
+        fetchProducts();
+    }, [id]);
 
-    const handleRemoveProduct = (order_item_id: number | null) => {
-        if (order_item_id === null) {
-            alert("Kunde inte ta bort produkten eftersom order-item saknar ID.");
+
+    const handleRemoveProduct = async (order_item_id: number | null) => {
+        if (order_item_id === null) return;
+        try {
+            await deleteOrderItem(order_item_id);
+            fetchOrder(); 
+        } catch (error) {
+            console.error("Kunde inte ta bort produkten", error);
+        }
+    };
+    
+    const handleUpdateQuantity = async (product_id: number, newQuantity: number) => {
+        if (newQuantity < 1) {
             return;
         }
-    
-        console.log("Tar bort order-item med ID:", order_item_id);
-    
-        axios.delete(`http://localhost:3000/order-items/${order_item_id}`)
-            .then(() => {
-                alert("Produkten har tagits bort från ordern.");
-                fetchOrder();
-            })
-            .catch(() => alert("Kunde inte ta bort produkten."));
-      };
-    
-    const handleUpdateQuantity = (product_id: number, newQuantity: number) => {
-        if (newQuantity < 1) return alert("Antalet måste vara minst 1.");
-        console.log("Skickar PATCH till:", `http://localhost:3000/order-items/${product_id}`);
-        console.log("Data som skickas:", { quantity: newQuantity });
-
-        axios.patch(`http://localhost:3000/order-items/${product_id}`, { quantity: newQuantity })
-            .then(() => {
-                alert("Antalet har uppdaterats.");
-                fetchOrder(); 
-            })
-            .catch(() => alert("Kunde inte uppdatera antalet."));
+        try {
+            await updateOrderItemQuantity(product_id, { quantity: newQuantity });
+            fetchOrder();
+        } catch (error) {
+            console.error("Kunde inte uppdatera antalet", error);
+        }
     };
 
-    const handleDeleteOrder = () => {
+    const handleDeleteOrder = async () => {
         if (!window.confirm("Är du säker på att du vill ta bort hela ordern?")) return;
-
-        axios.delete(`http://localhost:3000/orders/${id}`)
-            .then(() => {
-                alert("Ordern har tagits bort.");
-                navigate("/admin/orders");
-            })
-            .catch(() => alert("Kunde inte ta bort ordern."));
+        if (!id) {
+            console.error("Order-ID saknas.");
+            return;
+        }
+        try {
+            await deleteOrder(Number(id));
+            navigate("/admin/orders");
+        } catch (error) {
+            console.error("Kunde inte ta bort ordern", error);
+        }
     };
 
     if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -129,7 +123,7 @@ const OrderDetails = () => {
                                 </td>
                                 <td>{item.unit_price} kr</td>
                                 <td>
-                                <button className="delete-btn-admin" onClick={() => handleRemoveProduct(item.id)}>Radera</button>
+                                    <button className="delete-btn-admin" onClick={() => handleRemoveProduct(item.id)}>Radera</button>
                                 </td>
                             </tr>
                         );

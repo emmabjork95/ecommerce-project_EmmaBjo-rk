@@ -6,14 +6,12 @@ import CartContext from "../contexts/CartContext";
 import { CartActionType } from "../reducers/CartReducer";
 import "../styles/OrderConfirmation.css"
 
-
 export const OrderConfirmation = () => {
   const [searchParams] = useSearchParams();
   const [order, setOrder] = useState<IOrder | null>(null);
   const {dispatch} = useContext(CartContext);
 
   useEffect(() => {
- 
     const sessionId = searchParams.get("session_id");
     console.log("Session Id från URL:", sessionId);
 
@@ -21,7 +19,6 @@ export const OrderConfirmation = () => {
       const fetchOrder = async () => {
         try {
           const response = await getPaymentById(sessionId);
-          console.log("Hämtad order:", response);
 
           if(response) {
             setOrder(response);
@@ -66,7 +63,6 @@ export const OrderConfirmation = () => {
         <li className="adress-confirmation">{order.customer_city}, {order.customer_country}</li>
         <li></li>
       </ul>
-
       <h3>Produkter</h3>
       <ul className="order-confirmation-list">
         {order.order_items.map((item: any) => (
@@ -75,9 +71,7 @@ export const OrderConfirmation = () => {
           </li>
         ))}
       </ul>
-
       <p className="order-confirmation-total">Totalbelopp: {order.total_price} kr</p>
     </div>
   );
 };
-
