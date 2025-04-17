@@ -2,7 +2,6 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { ICustomer } from "../../types/ICustomer";
 import { getCustomerById, updateCustomer } from "../../services/apiCustomer";
 import { useNavigate, useParams } from "react-router";
-import '../../styles/EditCustomer.css'
 
 export const EditCustomer = () => {
   const { id } = useParams<{ id: string }>(); 

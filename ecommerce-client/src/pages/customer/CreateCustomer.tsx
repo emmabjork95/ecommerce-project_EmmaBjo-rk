@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { createCustomer } from "../../services/apiCustomer";
 import {  INewCustomer } from "../../types/ICustomer";
 import { useNavigate } from "react-router";
-import '../../styles/CreateCustomer.css'
+
 
 const CreateCustomer = () => {
   const navigate = useNavigate();
